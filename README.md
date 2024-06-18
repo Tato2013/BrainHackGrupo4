@@ -1,5 +1,28 @@
 # Machine Learning y Proteómica para la identificación de Biomarcadores del Parkison
 
+## 📋 **Índice**
+
+- 📖 *[Background](#background)*
+- 👥 *[Integrantes del Equipo](#integrantes-del-equipo)*
+- 🎯 *[Objetivos](#objetivos)*
+- 📊 *[Data](#data)*
+- 🔬 *[Subestudios de PPMI](#subestudios-de-ppmi)*
+- 🧩 *[Modelos](#modelos)*
+- 🛠️ *[Desafíos](#desafíos)*
+- 🔮 *[Desafíos Futuros](#desafíos-futuros)*
+- 📚 *[Referencias](#referencias)*
+
+## Integrantes del Equipo
+
+| Nombre          | Rol                | Contacto                   |
+|-----------------|---------------------|----------------------------|
+| Ivana Primost   |                    | 1   |
+| Leonardo Rivadeneira| Científico de Datos| 2    |
+| Naiara Zilinski |                     |                            |
+| Marcelo Peralta | Cientifico de Datos   | cheloperalta22@gmail.com |
+
+
+
 ## Backround
 
 La enfermedad de Parkinson es una condición degenerativa, progresiva y crónica del sistema nervioso central. 
@@ -48,6 +71,8 @@ Se utilizó un modelo de Random Forest con 314 pacientes, empleando datos clíni
     Historial familiar
     α-sinucleína
 
+#### Conclusiones 
+
 ### SVM (Máquinas de Vectores de Soporte)
 
 Para este modelo, se incluyeron 94 pacientes usando datos clínicos y plasma. Las características consideradas fueron:
@@ -66,6 +91,9 @@ Para este modelo, se incluyeron 94 pacientes usando datos clínicos y plasma. La
     IGLV3
     LGALS3BP
     PPBP
+
+#### Conclusiones  
+
 ### XGBoost
 
 El modelo XGBoost se aplicó a 318 pacientes utilizando datos clínicos y orina. Las características utilizadas fueron:
@@ -75,3 +103,71 @@ El modelo XGBoost se aplicó a 318 pacientes utilizando datos clínicos y orina.
     Historial familiar
     MoCA
     PC(200X)
+
+#### Conclusiones 
+
+## Conclusión General
+
+Basados en los resultados obtenidos, se pueden derivar las siguientes conclusiones y recomendaciones:
+
+- **Eficacia de los Modelos**
+  - Los modelos propuestos han demostrado ser eficaces en la identificación y detección de biomarcadores en diversas muestras biológicas.
+
+- **Necesidad de Investigación Adicional**
+  - Es esencial continuar investigando para fortalecer estos modelos en la búsqueda de biomarcadores a partir de muestras biológicas más accesibles.
+
+- **Exploración de Nuevas Combinaciones**
+  - Probar nuevas combinaciones de proteínas puede ofrecer insights adicionales y mejorar la precisión de los modelos.
+
+- **Selección de Métodos Estadísticos**
+  - Elegir métodos estadísticos adecuados para los datos específicos es crucial para obtener resultados válidos y robustos.
+
+- **Revalidación en Bases de Datos Más Amplias**
+  - Revalidar los modelos en bases de datos con un tamaño muestral mayor (n) para asegurar su generalizabilidad y robustez.
+
+## Desafíos
+
+En el análisis y desarrollo de modelos para la enfermedad de Parkinson, enfrentamos varios desafíos significativos:
+
+- **Gran Tamaño de la Base de Datos**
+  - **Descripción**: La base de datos contiene una gran cantidad de registros y atributos, lo que hace que el procesamiento y análisis sean complejos y requieran una alta capacidad computacional.
+  - **Impacto**: Manejar este volumen de datos puede ser costoso en términos de tiempo y recursos, y requiere estrategias eficientes para el almacenamiento y procesamiento.
+
+- **Exclusión de Participantes por Falta de Datos de Biomarcadores**
+  - **Descripción**: Algunos participantes deben ser excluidos del análisis debido a la falta de datos completos de biomarcadores.
+  - **Impacto**: Esta exclusión reduce el tamaño de la muestra y puede introducir sesgos, afectando la representatividad y validez de los resultados.
+
+- **Trabajo con Datos Precurados**
+  - **Descripción**: Utilizar datos que ya han sido precurados limita la flexibilidad del análisis, ya que se han tomado decisiones previas sobre la calidad y el procesamiento de estos datos.
+  - **Impacto**: Restringe la capacidad de explorar nuevas hipótesis y enfoques analíticos, ya que no se puede acceder a los datos en su forma original.
+
+## Desafíos Futuros
+
+Para avanzar en la investigación y mejora del diagnóstico de la enfermedad de Parkinson, se identifican las siguientes áreas de desarrollo:
+
+- **Incorporar Variaciones Genéticas**
+  - **Descripción**: Integrar datos genéticos en el análisis para personalizar el enfoque y entender mejor los factores de riesgo individuales.
+  - **Objetivo**: Aumentar la precisión de los modelos predictivos y mejorar la identificación de subtipos de la enfermedad.
+
+- **Generar y Trabajar con Datos Propios**
+  - **Descripción**: Obtener y analizar datos generados internamente, en lugar de depender únicamente de bases de datos externas.
+  - **Objetivo**: Controlar mejor la calidad y relevancia de los datos para estudios específicos.
+
+- **Incluir Estadios Avanzados de Parkinson**
+  - **Descripción**: Incluir datos de pacientes en etapas avanzadas de la enfermedad para entender mejor su progresión.
+  - **Objetivo**: Desarrollar estrategias de tratamiento y manejo para todas las fases de la enfermedad.
+
+- **Reducir la Dependencia de Datos Clínicos como Indicadores Tempranos**
+  - **Descripción**: Investigar nuevos biomarcadores que permitan identificar la enfermedad en sus primeras etapas sin depender exclusivamente de datos clínicos.
+  - **Objetivo**: Facilitar la detección temprana y precisa, mejorando las oportunidades de intervención y tratamiento.
+
+## Referencias
+
+- **Kaiser, S., Zhang, L., Mollenhauer, B. et al.** (2023). "Una visión proteogenómica de la causalidad y heterogeneidad de la enfermedad de Parkinson". *npj Parkinsons Dis*, 9, 24. [https://doi.org/10.1038/s41531-023-00461-9](https://doi.org/10.1038/s41531-023-00461-9)
+
+- **Rutledge, J., Lehallier, B., Zarifkar, P. et al.** (2024). "La proteómica integral del LCR, el plasma y la orina identifica la DDC y otros biomarcadores de la enfermedad de Parkinson temprana". *Acta Neuropathol*, 147, 52. [https://doi.org/10.1007/s00401-024-02706-0](https://doi.org/10.1007/s00401-024-02706-0)
+
+- **Dou, K., Ma, J., Zhang, X., Shi, W., Tao, M., Xie, A.** (2022). "Modelado de predictores múltiples para predecir la progresión temprana de la enfermedad de Parkinson y los síntomas no motores". *Revista*, Volumen, Páginas. [https://doi.org/10.xxxxx/yyyyyy](https://doi.org/10.xxxxx/yyyyyy)
+
+- **The Parkinson Progression Marker Initiative (PPMI)**. [Enlace al recurso](https://www.ppmi-info.org/)
+ 
