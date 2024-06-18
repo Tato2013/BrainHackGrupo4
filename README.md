@@ -8,6 +8,7 @@
 - 📊 *[Data](#data)*
 - 🔬 *[Subestudios de PPMI](#subestudios-de-ppmi)*
 - 🧩 *[Modelos](#modelos)*
+- 💡 *[Conclusiones](#conclusión-general)*
 - 🛠️ *[Desafíos](#desafíos)*
 - 🔮 *[Desafíos Futuros](#desafíos-futuros)*
 - 📚 *[Referencias](#referencias)*
