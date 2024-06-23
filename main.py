@@ -7,6 +7,10 @@ import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 import joblib
 
+
+#************************************************************************************
+#Variables
+#************************************************************************************
 df=pd.read_csv('Datos/PPMI_2022.csv')
 modelo1=pd.read_csv('Datos/randonforestdatos.csv')
 modelo2=pd.read_csv('Datos/modelo_svm.csv')
@@ -50,19 +54,23 @@ orange_palette = [
     '#FFA169'   # Pale Orange
 ]
 sns.set_palette(sns.color_palette(orange_palette))
+#********************************************************************************
 # Título de la aplicación
+#********************************************************************************
 st.title("NeuroBioPredict: ML-Based Biomarker Discovery in Parkinson's")
 
-
 # Menú con pestañas en la barra lateral, dispuestas una debajo de otra
-#menu = ["Teoría", "Visualización", "Modelo"]
-#choice = st.sidebar.radio("Selecciona una pestaña", menu)
 st.sidebar.title("Navigation Menu")
 menu = st.sidebar.radio("Go to", ["Theory", "Charts", "Model"])
 
 
+#********************************************************************************
+#Navegamos por la pagina
+#********************************************************************************
 
+#Pagina principal
 if menu == "Theory":
+    #Explicacion del proyecto
     st.header("Project definition")
     st.write("""
         Parkinson’s disease (PD) starts at the molecular and cellular levels long before motor symptoms appear, yet there are currently no early-stage molecular biomarkers for diagnosis, prognosis prediction, or monitoring therapeutic response. This absence of biomarkers significantly impedes patient care. Here, we explore the use of machine learning approaches to predict Parkinson's disease and identify potential biochemical biomarkers in urine and plasma.
@@ -74,6 +82,9 @@ The identification of molecular biomarkers for Parkinson's disease, particularly
 Additionally, we aim to acquire and apply advanced knowledge in machine learning techniques and omics data analysis, strengthening the necessary skills for managing and processing complex datasets. This emerging approach is crucial and increasingly implemented in the development of more accurate and personalized diagnostic and therapeutic tools. 
 
         """)
+    #********************************************************************************
+    #Datos utilizados
+    #********************************************************************************
     st.write("Data")
     st.write("""
         For this project, we used data from the Parkinson's Progression Markers Initiative (PPMI) study database, which contains genetic, metabolic, and clinical data for Parkinson's disease patients and healthy controls. The data utilized comes from the PPMI sub-studies, titled Project 177 and Project 190.
@@ -92,7 +103,9 @@ Additionally, we aim to acquire and apply advanced knowledge in machine learning
     
     st.dataframe(modelo2)
     col1, col2 = st.columns(2)
-
+#********************************************************************************
+#Proyectos sobre los que nos apoyamos
+#********************************************************************************
     with col1:
         st.header("PPMI (Project 177)")
         st.write("""
@@ -130,13 +143,18 @@ Additionally, we aim to acquire and apply advanced knowledge in machine learning
         </div>
         """, unsafe_allow_html=True)
 
-    
+#********************************************************************************
+#Graficos
+#********************************************************************************    
 elif menu == "Charts":
     option = st.sidebar.selectbox(
     'Select a chart category',
     ('CSF Charts', 'Plasma Charts', 'Urine Charts')
     )
     st.title("Charts")
+    #********************************************************************************
+    #Graficos de histotial clinico
+    #********************************************************************************
     if option == 'CSF Charts':
         st.header('CSF Charts')
         
@@ -183,7 +201,9 @@ elif menu == "Charts":
 
         fig_asyn_upsit = grafico_asyn_upsit(modelo1)
         st.pyplot(fig_asyn_upsit)
-    
+    #********************************************************************************
+    #Graficos de plasma
+    #********************************************************************************
     elif option == 'Plasma Charts':
         st.header('Plasma Charts')
         biomarcadores = [col for col in modelo2.columns if col.startswith('P177_Plasma')]
@@ -215,9 +235,13 @@ elif menu == "Charts":
     elif option == 'Urine Charts':
         st.header('Urine Charts')
         
-      
+#********************************************************************************
+#Vemos los modelos inplementados
+#********************************************************************************      
 elif menu == "Model":
-    
+    #********************************************************************************
+    #Explicacion general de los resultados
+    #********************************************************************************
     st.title("Results: Parkinson’s Disease Classification Models")
 
     # Overview
@@ -230,13 +254,15 @@ elif menu == "Model":
 
     The workflow consisted of data preparation, feature selection, model training, and evaluation.
     """)
-
+#********************************************************************************
     # Comparing Models
-    
+#******************************************************************************** 
     st.header("Comparison of Models")
 
     tab1, tab2,tab3  = st.tabs(["Model 1: Clinical Data", "Model 2: Plasma Proteomics SVM","Model 3: Urinary Proteomics"])
-
+    #********************************************************************************
+    #Modelo de randonforest
+    #********************************************************************************
     with tab1:
         min_age, max_age = 40, 93
         min_moca, max_moca = 17, 30
@@ -303,6 +329,9 @@ elif menu == "Model":
                         # Imputar, escalar y predecir
                         
     with tab2:
+        #********************************************************************************
+        #Modelo SVM
+        #********************************************************************************
         st.header("Parkinson's Disease Classification Model")
         st.write("Example Data for Model Testing:")
         st.write('Disease_status: HC: 0, PD: 1')
