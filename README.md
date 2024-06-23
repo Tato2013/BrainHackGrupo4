@@ -1,5 +1,10 @@
 # Machine Learning y Proteómica para la identificación de Biomarcadores del Parkison
 
+## ⚠️ **Advertencia: Naturaleza Académica del Proyecto**
+
+Este proyecto es de naturaleza académica y no tiene ninguna validez médica. Los modelos y resultados presentados son puramente experimentales y deben ser tratados como tal. Se recomienda no utilizar estos resultados para diagnóstico o tratamiento médico.
+
+
 ## 📋 **Índice**
 
 - 📖 *[Background](#background)*
@@ -171,4 +176,45 @@ Para avanzar en la investigación y mejora del diagnóstico de la enfermedad de 
 - **Dou, K., Ma, J., Zhang, X., Shi, W., Tao, M., Xie, A.** (2022). "Modelado de predictores múltiples para predecir la progresión temprana de la enfermedad de Parkinson y los síntomas no motores". *Revista*, Volumen, Páginas. [https://doi.org/10.xxxxx/yyyyyy](https://doi.org/10.xxxxx/yyyyyy)
 
 - **The Parkinson Progression Marker Initiative (PPMI)**. [Enlace al recurso](https://www.ppmi-info.org/)
- 
+
+## Vea el Trabajo Realizado
+
+Para explorar y interactuar con el trabajo realizado, visita el siguiente enlace:
+
+🔗 [Deploy del Trabajo](https://neurobiopredict.streamlit.app/)
+
+Este enlace te llevará a la aplicación desplegada donde podrás explorar los modelos y resultados del proyecto relacionado con la enfermedad de Parkinson.
+
+## Probar el Deployment Local con Streamlit
+
+1. **Clonar el Repositorio**: Clona este repositorio a tu máquina local.
+1. **Clonar el Repositorio**: Clona este repositorio a tu máquina local para obtener el código fuente.
+
+    ```bash
+    git clone https://github.com/Tato2013/BrainHackGrupo4.git
+    
+    ```
+
+2. **Crear un Entorno Virtual (Recomendado)**: Crea y activa un entorno virtual para mantener las dependencias del proyecto aisladas.
+
+    ```bash
+    python -m venv env       # Crea un entorno virtual
+    source env/bin/activate  # Activa el entorno virtual (Linux/Mac)
+    env\Scripts\activate     # Activa el entorno virtual (Windows)
+    ```
+
+3. **Instalar Dependencias**: Instala las bibliotecas y dependencias necesarias utilizando el archivo `requirements.txt`.
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. **Ejecutar la Aplicación**: Ejecuta el siguiente comando para iniciar la aplicación Streamlit desde la carpeta donde se encuentra el archivo principal (por ejemplo, `main.py`).
+
+    ```bash
+    streamlit run main.py
+    ```
+
+5. **Interactuar con la Aplicación**: Una vez que la aplicación esté en funcionamiento, abre tu navegador web y visita `http://localhost:8501` para interactuar con la aplicación Streamlit.
+
+   Asegúrate de tener el entorno virtual activado y todas las dependencias instaladas antes de ejecutar la aplicación.
