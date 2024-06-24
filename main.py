@@ -6,6 +6,8 @@ import matplotlib.colors as mcolors
 import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 import joblib
+from xgboost import XGBClassifier
+from sklearn.decomposition import PCA
 
 
 #************************************************************************************
@@ -24,7 +26,8 @@ data_modelo1 = {
     'fampd_bin': [2, 2, 2, 1, 1, 1],
     'upsit': [35, 40, 34, 20, 16, 38]
 }
-
+num_pc = 200
+datos_modelo3=pd.read_csv('Datos/datosmodelo3.csv')
 # Crear DataFrame
 datos_modelo1 = pd.DataFrame(data_modelo1)
 data = {
@@ -45,7 +48,7 @@ data = {
     'DISEASE_STATUS': [0, 0, 0, 1, 1, 1]
 }
 datos_modelo2 = pd.DataFrame(data)
-
+featuresG = [f"PC{i+1}" for i in range(200)]
 orange_palette = [
     '#D73B0A',  # Red-Orange
     '#E15522',  # Strong Orange
@@ -95,13 +98,18 @@ Additionally, we aim to acquire and apply advanced knowledge in machine learning
     
     st.dataframe(df)
     
-    st.write('Datos utilizados en el modelo de randon forest ')
+    st.write('Data used in the random forest model: ')
     
     st.dataframe(modelo1)
     
-    st.write('Datos utilizados en el modelo de SVM ')
+    st.write('Data used in the SVM model: ')
     
     st.dataframe(modelo2)
+    
+    st.write('Data used in the XGB model:')
+    
+    st.dataframe(datos_modelo3)
+    
     col1, col2 = st.columns(2)
 #********************************************************************************
 #Proyectos sobre los que nos apoyamos
@@ -235,6 +243,35 @@ elif menu == "Charts":
     elif option == 'Urine Charts':
         st.header('Urine Charts')
         
+        st.write('Disease_status: HC: 0, PD: 1')
+        
+        selected_variable = st.selectbox('Selecciona una variable para visualizar:', featuresG[:-1])
+
+        # Boxplot del componente principal seleccionado
+        st.write('BoxPlot')
+        plt.figure(figsize=(14, 8))
+        sns.boxplot(data=datos_modelo3, x='DISEASE_STATUS', y=selected_variable, palette=orange_palette)
+        plt.title(f'Distribution of {selected_variable} by Disease Status')
+        plt.xlabel('Disease Status')
+        plt.ylabel(selected_variable)
+        st.pyplot(plt)
+        
+        st.write('---')
+        #Histograma
+        st.write('Distribucion de los PC')
+        data_to_plot = datos_modelo3[[selected_variable, 'DISEASE_STATUS']]
+
+        plt.figure(figsize=(10, 6))
+        sns.histplot(data=data_to_plot, x=selected_variable, hue='DISEASE_STATUS', kde=True, bins=20, palette=orange_palette)
+        plt.title(f'Histogram of {selected_variable}')
+        plt.xlabel(selected_variable)
+        plt.ylabel('Frequency')
+        plt.grid(True)
+
+        # Mostrar el gráfico en Streamlit
+        st.pyplot(plt)
+        
+
 #********************************************************************************
 #Vemos los modelos inplementados
 #********************************************************************************      
@@ -436,4 +473,33 @@ elif menu == "Model":
                         st.error(f"An error occurred during prediction: {e}")
                 
     with tab3:
-        st.header("Modelo de clasificacion")        
+        st.header("XGBoost Classification Model")    
+        model_xgb = joblib.load('modelos/modelo_xgb.pkl')
+
+        # Definir las características
+        features = ['AGE', 'GENDER', 'fampd_bin', 'moca'] + [f"PC{i+1}" for i in range(200)]
+
+        # Cargar los datos de muestra
+        sample_data = pd.read_csv('Datos/sample_data.csv')
+        sample_data1=sample_data[features]
+        # Mostrar las opciones de muestra
+        st.title("Disease Status Prediction")
+        st.dataframe(sample_data)
+        st.write("Select a sample from the data to see the model prediction:")
+
+        # Crear un selector de ejemplo
+        selected_index = st.selectbox("Selected sample index", sample_data1.index)
+
+        # Mostrar los datos seleccionados
+        selected_example = sample_data1.loc[selected_index]
+        st.write("Selected sample:")
+        st.write(selected_example)
+
+        # Convertir el ejemplo a DataFrame para predecir
+        input_df = pd.DataFrame([selected_example])
+
+        # Realizar la predicción usando el modelo cargado
+        prediction = model_xgb.predict(input_df)
+
+        prediction_message = "Unlikely to have Parkinson's" if prediction[0] == 0 else "Possible Parkinson's"
+        st.write("Prediction:", prediction_message)   
